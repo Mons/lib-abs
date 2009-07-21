@@ -27,6 +27,12 @@ Extended syntax (glob)
 
 	use lib::abs 'modules/*/lib';
 
+There are also may be used helper function from lib::abs (see example/ex4):
+
+	use lib::abs;
+	# ...
+	my $path = lib::abs::path('../path/relative/to/me'); # returns absolute path
+
 =head1 DESCRIPTION
 
 The main reason of this library is transformate relative paths to absolute at the C<BEGIN> stage, and push transformed to C<@INC>.

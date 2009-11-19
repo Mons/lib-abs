@@ -31,3 +31,4 @@
 ^makeall\.sh$
 ^tmp/
 ^lib-abs-.*
+.*\.tar\.gz$

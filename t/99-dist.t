@@ -7,19 +7,17 @@ BEGIN {
 	eval q{ use Test::Dist; 1 } or plan skip_all => 'Test::Dist required';
 	chdir "$FindBin::Bin/.." or plan skip_all => "Can't chdir to dist: $!";
 }
-use Test::NoWarnings;
 
 dist_ok(
-	'+' => 1,
 	run => 1,
-	skip => [qw(prereq)],
+	skip => [qw(prereq podcover)],
 	fixme => {
 		#match => qr/FIXIT/, # Ignore TODO|FIXME here, we use it ;)
 	},
 	kwalitee => {
 		req => [qw( has_separate_license_file has_example
 		metayml_has_provides metayml_declares_perl_version
-		uses_test_nowarnings has_version_in_each_file
+		has_version_in_each_file
 		)],
 	},
 	prereq => [
@@ -30,4 +28,5 @@ dist_ok(
 	},
 );
 exit 0;
+
 require Test::Pod::Coverage; # kwalitee hacks, hope temporary

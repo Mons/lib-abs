@@ -1,7 +1,9 @@
 #!/usr/bin/env perl -w
 
+our $tests;
 use strict;
-use Test::More tests => 3;
+use Test::More;
+BEGIN { my $tests = 3; eval q{ use Test::NoWarnings;1 } and $tests++; plan tests => $tests };
 use FindBin;
 use Cwd;
 use lib "$FindBin::Bin/../lib"; # there is no lib::abs yet ;)

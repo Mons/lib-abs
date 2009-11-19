@@ -1,5 +1,8 @@
 Revision history for lib-abs
 
+0.91    2009-11-19
+        Fix broken test due to behavior of lib undef 5.10.1
+
 0.90    2009-07-21
         Renamed ex-lib to lib abs
         Make import args to use glob patterns

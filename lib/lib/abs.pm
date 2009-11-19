@@ -10,11 +10,11 @@ lib::abs - The same as C<lib>, but makes relative path absolute.
 
 =cut
 
-$lib::abs::VERSION = '0.90';
+$lib::abs::VERSION = '0.91';
 
 =head1 VERSION
 
-Version 0.90
+Version 0.91
 
 =head1 SYNOPSIS
 
@@ -77,6 +77,7 @@ Mons Anderson, <mons@cpan.org>
 
 =cut
 
+use 5.006;
 use strict;
 use warnings;
 use lib ();

@@ -1,6 +1,6 @@
 use strict;
 
-my $tests; BEGIN { $tests = 16+7+1; }
+my $tests; BEGIN { $tests = 22; }
 
 use Test::More;
 
@@ -95,6 +95,20 @@ lib::abs->import(
 	'///opt/perl/lib',
 	'//opt/perl/lib',
 	'/opt/perl/lib',
+);
+my @abs = @INC; @INC = ();
+lib->import(
+	'///opt/perl/lib',
+	'//opt/perl/lib',
+	'/opt/perl/lib',
+);
+my @need = @INC; @INC = ();
+is_deeply \@abs,\@need, 'absolute is same as lib';
+
+# Rel ok
+
+@INC = ();
+lib::abs->import(
 	'.///',
 	'.//',
 	'./',
@@ -102,15 +116,12 @@ lib::abs->import(
 );
 my @chk = @INC; @INC = ();
 
-is($chk[0], '///opt/perl/lib', 'absolute path stay unchanged');
-is($chk[1], '//opt/perl/lib',  'absolute path stay unchanged');
-is($chk[2], '/opt/perl/lib',   'absolute path stay unchanged');
 SKIP: {
-    is($chk[3], $FindBin::Bin,     './// => .');
-    @chk > 4 or skip "Duplicates are collapsed",3;
-    is($chk[4], $FindBin::Bin,     '.// => .');
-    is($chk[5], $FindBin::Bin,     './ => .');
-    is($chk[6], $FindBin::Bin,     '. => .');
+	is($chk[0], $FindBin::Bin,     './// => .');
+	@chk > 1 or skip "Duplicates are collapsed",3;
+	is($chk[1], $FindBin::Bin,     '.// => .');
+	is($chk[2], $FindBin::Bin,     './ => .');
+	is($chk[3], $FindBin::Bin,     '. => .');
 }
 
 # Glob test

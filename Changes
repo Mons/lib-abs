@@ -1,7 +1,8 @@
 Revision history for lib-abs
 
-0.91    2009-11-19
-        Fix broken test due to behavior of lib undef 5.10.1
+0.91    2010-02-27
+        Fix broken test due to behavior of lib under 5.10.1
+        Fix broken test (warn) when hit some file as directory
 
 0.90    2009-07-21
         Renamed ex-lib to lib abs

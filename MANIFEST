@@ -1,4 +1,4 @@
-.cvsignore
+.gitignore
 Changes
 ex/ex1/mytest.pl
 ex/ex1/mytest.pm
@@ -35,7 +35,6 @@ t/03-check-3.27.t
 t/04-check-3.29.t
 t/05-check-3.2501.t
 t/06-check-3.12.t
-t/99-dist.t
 t/check.pl
 t/glob/t0/lib/.keep
 t/glob/t1/lib/.keep
@@ -49,3 +48,4 @@ t/lib/3.26/Cwd.pm
 t/lib/3.27/Cwd.pm
 t/lib/3.29/Cwd.pm
 t/pod.t
+xt/99-dist.t

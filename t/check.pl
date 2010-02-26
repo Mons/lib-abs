@@ -89,18 +89,20 @@ my $chk = shift @INC; # When left bad sub in @INC Test::Builder fails
 is(ref $chk, 'CODE', 'code in @INC');
 
 # Abs ok
-
+# Don't want to hit in  existing file
+my $path = '/somewhere/in/space';
+while (-e $path) { $path .= '/deep' }
 @INC = ();
 lib::abs->import(
-	'///opt/perl/lib',
-	'//opt/perl/lib',
-	'/opt/perl/lib',
+	'//'.$path,
+	'/'.$path,
+	$path,
 );
 my @abs = @INC; @INC = ();
 lib->import(
-	'///opt/perl/lib',
-	'//opt/perl/lib',
-	'/opt/perl/lib',
+	'//'.$path,
+	'/'.$path,
+	$path,
 );
 my @need = @INC; @INC = ();
 is_deeply \@abs,\@need, 'absolute is same as lib';

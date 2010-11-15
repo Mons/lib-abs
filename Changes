@@ -1,5 +1,8 @@
 Revision history for lib-abs
 
+0.92    2010-11-15
+        Added "WHY" section into POD
+
 0.91    2010-02-27
         Fix broken test due to behavior of lib under 5.10.1
         Fix broken test (warn) when hit some file as directory

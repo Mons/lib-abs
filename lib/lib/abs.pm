@@ -10,11 +10,11 @@ lib::abs - The same as C<lib>, but makes relative path absolute.
 
 =cut
 
-our $VERSION = '0.91';
+our $VERSION = '0.92';
 
 =head1 VERSION
 
-Version 0.91
+Version 0.92
 
 =head1 SYNOPSIS
 
@@ -60,6 +60,21 @@ Also this module is useful when writing tests, when you want to load strictly th
 Also this is useful, when you running under C<mod_perl>, use something like C<Apache::StatINC>, and your application may change working directory.
 So in case of chdir C<StatINC> fails to reload module if the @INC contain relative paths.
 
+=head1 WHY
+
+Q: we already have C<FindBin> and C<lib>, why we need this module?
+
+A: there is several reasons:
+
+1) C<FindBin> could find path incorrectly under C<mod_perl>
+
+2) C<FindBin> works relatively to executed binary instead of relatively to caller
+
+3) Perl is linguistic language, and `use lib::abs "..."' semantically more clear and looks more beautiful than `use FindBin; use lib "$FindBin::Bin/../lib";'
+
+4) C<FindBin> b<will> work incorrectly, if will be called not from executed binary (see http://github.com/Mons/lib-abs-vs-findbin for details)
+
+
 =head1 BUGS
 
 None known
@@ -73,7 +88,11 @@ under the same terms as Perl itself.
 
 =head1 AUTHOR
 
-Mons Anderson, <mons@cpan.org>
+Mons Anderson, C<< <mons@cpan.org> >>
+
+=head1 CONTRIBUTORS
+
+Oleg Kostyuk, C<< <cub@cpan.org> >>
 
 =cut
 

@@ -22,10 +22,10 @@ no_index:
 provides:
   lib::abs:
     file: lib/lib/abs.pm
-    version: 0.91
+    version: 0.92
 requires:
   Cwd: 3.12
   perl: 5.6.0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.91
+version: 0.92

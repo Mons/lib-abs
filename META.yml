@@ -1,6 +1,7 @@
 ---
-abstract: 'The same as C<lib>, but makes relative path absolute.'
+abstract: 'C<lib> that makes relative path absolute to caller.'
 author:
+  - '-2010 Mons Anderson.'
   - 'Mons Anderson <mons@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: 6.42
@@ -8,7 +9,7 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 0.91'
+generated_by: 'Module::Install version 1.00'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html

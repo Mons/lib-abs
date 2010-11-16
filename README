@@ -1,8 +1,5 @@
 NAME
-    lib::abs - The same as "lib", but makes relative path absolute.
-
-VERSION
-    Version 0.92
+    lib::abs - "lib" that makes relative path absolute to caller.
 
 SYNOPSIS
     Simple use like "use lib ...":
@@ -52,29 +49,26 @@ DESCRIPTION
     directory. So in case of chdir "StatINC" fails to reload module if the
     @INC contain relative paths.
 
-WHY
-    Q: we already have "FindBin" and "lib", why we need this module?
+RATIONALE
+    Q: We already have "FindBin" and "lib", why we need this module?
 
-    A: there is several reasons:
+    A: There are several reasons:
 
     1) "FindBin" could find path incorrectly under "mod_perl"
-
     2) "FindBin" works relatively to executed binary instead of relatively
     to caller
-
     3) Perl is linguistic language, and `use lib::abs "..."' semantically
     more clear and looks more beautiful than `use FindBin; use lib
     "$FindBin::Bin/../lib";'
-
     4) "FindBin" b<will> work incorrectly, if will be called not from
-    executed binary (see http://github.com/Mons/lib-abs-vs-findbin for
-    details)
+    executed binary (see <http://github.com/Mons/lib-abs-vs-findbin>
+    comparison for details)
 
 BUGS
     None known
 
 COPYRIGHT & LICENSE
-    Copyright 2007-2009 Mons Anderson.
+    Copyright 2007-2010 Mons Anderson.
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.

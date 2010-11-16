@@ -1,20 +1,16 @@
 #
-# Copyright (c) 200[789] Mons Anderson <mons@cpan.org>. All rights reserved
+# Copyright (c) 2007-2010 Mons Anderson <mons@cpan.org>. All rights reserved
 # This program is free software; you can redistribute it and/or
 # modify it under the same terms as Perl itself.
 package lib::abs;
 
 =head1 NAME
 
-lib::abs - The same as C<lib>, but makes relative path absolute.
+lib::abs - C<lib> that makes relative path absolute to caller.
 
 =cut
 
 our $VERSION = '0.92';
-
-=head1 VERSION
-
-Version 0.92
 
 =head1 SYNOPSIS
 
@@ -60,20 +56,23 @@ Also this module is useful when writing tests, when you want to load strictly th
 Also this is useful, when you running under C<mod_perl>, use something like C<Apache::StatINC>, and your application may change working directory.
 So in case of chdir C<StatINC> fails to reload module if the @INC contain relative paths.
 
-=head1 WHY
+=head1 RATIONALE
 
-Q: we already have C<FindBin> and C<lib>, why we need this module?
+Q: We already have C<FindBin> and C<lib>, why we need this module?
 
-A: there is several reasons:
+A: There are several reasons:
 
-1) C<FindBin> could find path incorrectly under C<mod_perl>
+=over 4
 
-2) C<FindBin> works relatively to executed binary instead of relatively to caller
+=item 1) C<FindBin> could find path incorrectly under C<mod_perl>
 
-3) Perl is linguistic language, and `use lib::abs "..."' semantically more clear and looks more beautiful than `use FindBin; use lib "$FindBin::Bin/../lib";'
+=item 2) C<FindBin> works relatively to executed binary instead of relatively to caller
 
-4) C<FindBin> b<will> work incorrectly, if will be called not from executed binary (see http://github.com/Mons/lib-abs-vs-findbin for details)
+=item 3) Perl is linguistic language, and C<`use lib::abs "..."'> semantically more clear and looks more beautiful than C<`use FindBin; use lib "$FindBin::Bin/../lib";'>
 
+=item 4) C<FindBin> b<will> work incorrectly, if will be called not from executed binary (see L<http://github.com/Mons/lib-abs-vs-findbin> comparison for details)
+
+=back
 
 =head1 BUGS
 
@@ -81,7 +80,7 @@ None known
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2007-2009 Mons Anderson.
+Copyright 2007-2010 Mons Anderson.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

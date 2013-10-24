@@ -10,7 +10,7 @@ lib::abs - C<lib> that makes relative path absolute to caller.
 
 =cut
 
-our $VERSION = '0.92';
+our $VERSION = '0.93';
 
 =head1 SYNOPSIS
 
@@ -18,6 +18,9 @@ Simple use like C<use lib ...>:
 
 	use lib::abs qw(./mylibs1 ../mylibs2);
 	use lib::abs 'mylibs';
+	
+	# if your path may not exists and it is ok, then:
+	use lib::abs -soft => qw(./mylibs1 ../mylibs2);
 
 Extended syntax (glob)
 
@@ -134,9 +137,10 @@ sub path {
 	_debug "$_ => $ret" if DEBUG > 1;
 	$ret;
 }
-
+our $SOFT;
 sub transform {
 	my $prefix;
+	no warnings 'uninitialized';
 	map {
 		ref || m{^/} ? $_ : do {
 			my $lib = $_;
@@ -146,13 +150,16 @@ sub transform {
 			if (index($abs,'*') != -1 or index($abs,'?') !=-1) {
 				_debug "transforming $abs using glob" if DEBUG > 1;
 				map {
-					abs_path( $_ )
-						or _croak("Bad path specification: `$lib' => `$_'" . ($! ? " ($!)" : ''))
+					my $x;
+					$x = abs_path( $_ ) and -d $x
+						or $SOFT or _croak("Bad path specification: `$lib' => `$x'" . ($! ? " ($!)" : ''));
+					defined $x ? ($x) : ();
 				} glob $abs;
 			} else {
-				$_ = abs_path( $abs ) or _croak("Bad path specification: `$lib' => `$abs'" . ($! ? " ($!)" : ''));
+				$_ = abs_path( $abs ) and -d $_
+					or $SOFT or _croak("Bad path specification: `$lib' => `$abs'" . ($! ? " ($!)" : ''));
 				_debug "$lib => $_" if DEBUG > 1;
-				($_);
+				defined $_ ? ($_) : ();
 			}
 		}
 	} @_;
@@ -161,6 +168,12 @@ sub transform {
 sub import {
 	shift;
 	return unless @_;
+	my $soft = 0;
+	if ($_[0] eq '-soft') {
+		$soft = 1;
+		shift @_;
+	}
+	local $SOFT = $soft;
 	@_ = ( lib => transform @_ = @_ );
 	_debug "use @_\n" if DEBUG > 0;
 	goto &lib::import;

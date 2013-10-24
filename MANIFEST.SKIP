@@ -5,6 +5,7 @@
 # Avoid Makemaker generated and utility files.
 \bMANIFEST\.bak
 \bMakefile$
+^MYMETA\.
 \bblib/
 \bMakeMaker-\d
 \bpm_to_blib\.ts$

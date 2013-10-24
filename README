@@ -7,6 +7,9 @@ SYNOPSIS
         use lib::abs qw(./mylibs1 ../mylibs2);
         use lib::abs 'mylibs';
 
+        # if your path may not exists and it is ok, then:
+        use lib::abs -soft => qw(./mylibs1 ../mylibs2);
+
     Extended syntax (glob)
 
         use lib::abs 'modules/*/lib';

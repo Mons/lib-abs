@@ -32,6 +32,11 @@ There are also may be used helper function from lib::abs (see example/ex4):
 	# ...
 	my $path = lib::abs::path('../path/relative/to/me'); # returns absolute path
 
+Note that path() will resolve symlinks. So if, for example, you are in
+'/home/whoever/myapp/t' and '../state' is a symlink to '/var/state/myapp',
+then path('../state') will return '/var/state/myapp' and not
+'/home/whoever/myapp/state'.
+
 =head1 DESCRIPTION
 
 The main reason of this library is transformate relative paths to absolute at the C<BEGIN> stage, and push transformed to C<@INC>.

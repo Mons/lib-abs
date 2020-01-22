@@ -10,7 +10,7 @@ lib::abs - C<lib> that makes relative path absolute to caller.
 
 =cut
 
-our $VERSION = '0.93';
+our $VERSION = '0.94';
 
 =head1 SYNOPSIS
 
@@ -81,12 +81,11 @@ A: There are several reasons:
 
 None known
 
-=head1 COPYRIGHT & LICENSE
+=head1 COPYRIGHT AND LICENSE
 
-Copyright 2007-2010 Mons Anderson.
+This software is copyright (c) 2007-2020 by Mons Anderson.
 
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
+This is free software; you can redistribute it and/or modify it under the same terms as the Perl 5 programming language system itself.
 
 =head1 AUTHOR
 

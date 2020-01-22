@@ -156,7 +156,11 @@ sub transform {
 					defined $x ? ($x) : ();
 				} glob $abs;
 			} else {
-				$_ = abs_path( $abs ) and -d $_
+				local $@;
+				eval {
+					$_ = abs_path( $abs );
+				};
+				$_ and !$@ and -d $_
 					or $SOFT or _croak("Bad path specification: `$lib' => `$abs'" . ($! ? " ($!)" : ''));
 				_debug "$lib => $_" if DEBUG > 1;
 				defined $_ ? ($_) : ();

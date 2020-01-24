@@ -24,11 +24,11 @@ no_index:
 provides:
   lib::abs:
     file: lib/lib/abs.pm
-    version: '0.94'
+    version: '0.95'
 requires:
   Cwd: '3.12'
   perl: 5.6.0
 resources:
   license: http://dev.perl.org/licenses/
   repository: https://github.com/Mons/lib-abs
-version: '0.94'
+version: '0.95'
